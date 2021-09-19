@@ -1,3 +1,5 @@
+package hw1;
+
 public class MathOperationsWithPrimitives {
     public static void main(String[] args) {
         byte byteVar1 = 8;
