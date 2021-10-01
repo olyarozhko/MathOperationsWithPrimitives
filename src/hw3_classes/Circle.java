@@ -55,9 +55,11 @@ class Money {
     private double sumUAH;
 
     Money(long hryvnia, byte kop) {
+        if (hryvnia < 0 || kop < 0) {
+            throw new IllegalArgumentException("Money Values should be >= 0");
+        }
         this.hryvnia = hryvnia;
         this.kop = kop;
-        this.sumUAH = calculateSumUAH();
     }
 
     Money() {
@@ -65,21 +67,19 @@ class Money {
     }
 
     public void setHryvnia(long hryvnia) {
-        this.hryvnia = hryvnia;
+        if (hryvnia >= 0) {
+            this.hryvnia = hryvnia;
+        } else throw new IllegalArgumentException("Hryvnia value should be >=0");
     }
 
     public void setKop(byte kop) {
-        this.kop = kop;
-    }
-
-    public double calculateSumUAH() {
-        if (this.hryvnia >= 0 || this.kop >= 0) {
-            return this.sumUAH = (double) (this.hryvnia * 100 + this.kop) / 100;
-        } else throw new IllegalArgumentException("Money Values should be > 0");
+        if (kop >= 0) {
+            this.kop = kop;
+        } else throw new IllegalArgumentException("Kop value should be >=0");
     }
 
     public double getSumUAH() {
-        return sumUAH;
+        return this.sumUAH = (double) (this.hryvnia * 100 + this.kop) / 100;
     }
 
     public byte getKop() {
@@ -103,9 +103,17 @@ class Money {
     }
 
     public static double division(Money sum1, Money sum2) {
+        if (Money.compare(sum2, new Money(0L, (byte) 0)) == 0) {
+            throw new IllegalArgumentException("Cannot divide by zero");
+        }
         return sum1.getSumUAH() / sum2.getSumUAH();
     }
 
+    /**
+     * @return Method returns "0" when entered values are equal,
+     * "1" - when the 1st value > value2,
+     * "-1" - when value1 < value2
+     */
     public static int compare(Money sum1, Money sum2) {
         return Double.compare(sum1.getSumUAH(), sum2.getSumUAH());
     }
