@@ -1,0 +1,14 @@
+Introduction
+
+When programming, whether you're creating a mobile app, a web application, or just writing scripts,
+you often have the need to read or write data to a file. This data could be cache data, 
+data you retrieved for a dataset, an image, or just about anything else you can think of.
+
+In this tutorial, we are going to show the most common ways you can read and write to files in Java.
+
+Java provides several API (also known as Java I/O) to read and write files since its initial releases. 
+With subsequent releases, Java I/O has been improved, simplified and enhanced to support new features.
+
+Before we get in to some actual examples, it would help to understand the classes available to you that will 
+handle the reading and writing of data to files. In the following sections we'll provide a brief overview of the Java I/O classes 
+and explain what they do, then we'll take a look at Java NIO Streams, and finally we'll show some examples of reading and writing data to files.
